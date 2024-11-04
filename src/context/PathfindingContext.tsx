@@ -26,5 +26,19 @@ export const PathfindingProvider = ({children}: {children:ReactNode}) => {
     const [grid, setGrid] = useState<GridType>(createGrid(START_TILE_CONFIGURATION, END_TILE_CONFIGURATION));
     const[isGraphVisualized, setIsGraphVisualized] = useState<boolean>(false);
     
+    return (
+      <PathfindingContext.Provider
+      value={{
+        algorithm,
+        setAlgorithm,
+        maze,
+        setMaze,
+        grid,
+        setGrid,
+        isGraphVisualized,
+        setIsGraphVisualized
+      }}
+      >{children}</PathfindingContext.Provider>
+    )
 
 }

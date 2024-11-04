@@ -29,5 +29,5 @@ export const TileProvider = ({children}: {children: ReactNode}) => {
           >
             {children}
           </TileContext.Provider>
-     )
-}
+     );
+};
