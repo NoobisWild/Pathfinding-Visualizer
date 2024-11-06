@@ -1,6 +1,11 @@
 import { twMerge } from "tailwind-merge";
 import { END_TILE_STYLE, MAX_ROWS, PATH_TILE_STYLE, START_TILE_STYLE, TILE_STYLE, TRAVERSED_TILE_STYLE, WALL_TILE_STYLE } from "../utils/constants";
 
+
+interface MouseFunction {
+    (row: number, col: number): void;
+}
+
 export function Tile({
     row,
     col,
@@ -9,6 +14,9 @@ export function Tile({
     isTraversed,
     isWall,
     isPath,
+    handleMouseUp,
+    handleMouseDown,
+    handleMouseEnter,
 }:{
     row: number;
     col: number;
@@ -17,6 +25,9 @@ export function Tile({
     isTraversed: boolean;
     isWall: boolean;
     isPath: boolean;
+    handleMouseUp: MouseFunction;
+    handleMouseDown: MouseFunction;
+    handleMouseEnter: MouseFunction;
 }) {
 
     let tileTypeStyle;
@@ -41,5 +52,9 @@ export function Tile({
 
     return(
 
-    <div className={twMerge(tileTypeStyle, borderStyle, edgeStyle)} id={`${row}-${col}`} />
+    <div className={twMerge(tileTypeStyle, borderStyle, edgeStyle)} id={`${row}-${col}`} 
+    onMouseDown={() => handleMouseDown(row, col)}
+    onMouseUp={() => handleMouseUp(row, col)}
+    onMouseEnter={() => handleMouseEnter(row, col)}
+    />
 )}
